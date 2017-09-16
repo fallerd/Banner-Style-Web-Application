@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Professors</h1>
+<h1>Manage Professors</h1>
 
 <table>
   <thead>
     <tr>
       <th>Professor name</th>
       <th>Email address</th>
-      <th>Office location</th>
+      <th>Office</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -23,9 +23,8 @@
         <td><%= link_to 'Destroy', professor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
+      <tr>
+        <td colspan=7 ><%= link_to 'New Professor', new_professor_path %></td>
+      </tr>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Professor', new_professor_path %>

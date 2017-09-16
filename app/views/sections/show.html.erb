@@ -1,18 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Number:</strong>
-  <%= @section.number %>
+  <strong>Section Number:</strong>
+  <%= @section.number.to_s.rjust(3, '0') %>
 </p>
 
 <p>
   <strong>Course:</strong>
-  <%= @section.course %>
+  <%= @section.course.course_name %>
 </p>
 
 <p>
   <strong>Professor:</strong>
-  <%= @section.professor %>
+  <%= @section.professor.professor_name %>
 </p>
 
 <p>

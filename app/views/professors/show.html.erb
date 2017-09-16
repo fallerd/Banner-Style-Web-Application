@@ -1,19 +1,32 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Professor name:</strong>
+<h1>
   <%= @professor.professor_name %>
-</p>
-
-<p>
-  <strong>Email address:</strong>
-  <%= @professor.email_address %>
-</p>
-
-<p>
-  <strong>Office location:</strong>
-  <%= @professor.office_location %>
-</p>
-
-<%= link_to 'Edit', edit_professor_path(@professor) %> |
-<%= link_to 'Back', professors_path %>
+</h1>
+<%= @professor.email_address %>
+ | Office: <%= @professor.office_location %>
+ - <%= link_to 'Edit', edit_professor_path(@professor) %>
+<br>
+<br>
+<strong>Teaching these courses:</strong>
+<br>
+<table>
+  <tr>
+    <th>Course name</th>
+    <th>Section</th> 
+    <th>Time</th>
+    <th>Days</th>
+    <th>Location</th>
+    <th>Semester</th>
+  </tr>
+  <% @professor.courses.each_with_index do |course, i| %>
+  <tr>
+    <td><%= course.course_name %></td>
+    <td><%= @professor.sections[i].number.to_s.rjust(3, '0')  %></td> 
+    <td><%= @professor.sections[i].time %></td>
+    <td><%= @professor.sections[i].days %></td>
+    <td><%= @professor.sections[i].room_number %></td>
+    <td><%= @professor.sections[i].semester %></td>
+  </tr>
+  <% end %>
+</table>

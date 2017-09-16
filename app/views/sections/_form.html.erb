@@ -18,12 +18,12 @@
 
   <div class="field">
     <%= f.label :course_id %>
-    <%= f.text_field :course_id %>
+    <%= f.collection_select :course_id, Course.order(:course_name), :id, :course_name, include_blank: true %>
   </div>
 
   <div class="field">
     <%= f.label :professor_id %>
-    <%= f.text_field :professor_id %>
+    <%= f.collection_select :professor_id, Professor.order(:professor_name), :id, :professor_name, include_blank: true %>
   </div>
 
   <div class="field">
@@ -43,7 +43,7 @@
 
   <div class="field">
     <%= f.label :semester %>
-    <%= f.text_field :semester %>
+    <%= f.select :semester, ['Fall', 'Summer', 'Spring']%>
   </div>
 
   <div class="actions">
