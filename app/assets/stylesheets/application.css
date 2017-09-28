@@ -33,3 +33,24 @@ td {
 tr:nth-child(even) {
     background-color: #f9f9f9;
 }
+
+#search-form {
+	text-align: right;
+}
+
+.activeTab {
+	background-color: white;
+}
+
+#navTable tr {
+	background-color: #0099BB;
+	border: 1px solid #0099BB;
+}
+
+#navTable td {
+	border: 1px solid #0099BB;
+}
+
+#navTable a {
+	color:white;
+}

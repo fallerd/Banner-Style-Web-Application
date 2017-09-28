@@ -4,6 +4,14 @@
 
 <table>
   <thead>
+    <!--<tr>
+      <th colspan="10">
+        <%= form_tag(professors_path, :method => "get", id: "search-form") do %>
+            <%= text_field_tag :search, params[:search], placeholder: "Search Professors" %>
+            <%= submit_tag "Search", :name => nil %>
+        <% end %>
+      </th>
+    </tr>-->
     <tr>
       <th>Professor name</th>
       <th>Email address</th>
@@ -13,15 +21,19 @@
   </thead>
 
   <tbody>
-    <% @professors.each do |professor| %>
-      <tr>
-        <td><%= professor.professor_name %></td>
-        <td><%= professor.email_address %></td>
-        <td><%= professor.office_location %></td>
-        <td><%= link_to 'Show', professor %></td>
-        <td><%= link_to 'Edit', edit_professor_path(professor) %></td>
-        <td><%= link_to 'Destroy', professor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <% if @professors.blank? %>
+      <h4 style="color:red;">There are no professors containing the term <%= params[:search] %>.</h4>
+    <% else %>
+      <% @professors.each do |professor| %>
+        <tr>
+          <td><%= professor.professor_name %></td>
+          <td><%= professor.email_address %></td>
+          <td><%= professor.office_location %></td>
+          <td><%= link_to 'Show', professor %></td>
+          <td><%= link_to 'Edit', edit_professor_path(professor) %></td>
+          <td><%= link_to 'Destroy', professor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
     <% end %>
       <tr>
         <td colspan=7 ><%= link_to 'New Professor', new_professor_path %></td>

@@ -4,6 +4,14 @@
 
 <table>
   <thead>
+    <!--<tr>
+      <th colspan="10">
+        <%= form_tag(courses_path, :method => "get", id: "search-form") do %>
+            <%= text_field_tag :search, params[:search], placeholder: "Search Courses" %>
+            <%= submit_tag "Search", :name => nil %>
+        <% end %>
+      </th>
+    </tr>-->
     <tr>
       <th>Course name</th>
       <th>Description</th>
@@ -13,15 +21,19 @@
   </thead>
 
   <tbody>
-    <% @courses.each do |course| %>
-      <tr>
-        <td><%= course.course_name %></td>
-        <td><%= course.description %></td>
-        <td><%= course.code %></td>
-        <td><%= link_to 'Show', course %></td>
-        <td><%= link_to 'Edit', edit_course_path(course) %></td>
-        <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <% if @courses.blank? %>
+      <h4 style="color:red;">There are no courses containing the term <%= params[:search] %>.</h4>
+    <% else %>
+      <% @courses.each do |course| %>
+        <tr>
+          <td><%= course.course_name %></td>
+          <td><%= course.description %></td>
+          <td><%= course.code %></td>
+          <td><%= link_to 'Show', course %></td>
+          <td><%= link_to 'Edit', edit_course_path(course) %></td>
+          <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
     <% end %>
       <tr>
         <td colspan=6 ><%= link_to 'New Course', new_course_path %></td>

@@ -4,6 +4,14 @@
 
 <table>
   <thead>
+    <!--<tr>
+      <th colspan="10">
+        <%= form_tag(sections_path, :method => "get", id: "search-form") do %>
+            <%= text_field_tag :search, params[:search], placeholder: "Search Sections" %>
+            <%= submit_tag "Search", :name => nil %>
+        <% end %>
+      </th>
+    </tr>-->
     <tr>
       <th>Number</th>
       <th>Course</th>
@@ -17,22 +25,27 @@
   </thead>
 
   <tbody>
-    <% @sections.each do |section| %>
-      <tr>
-        <td><%= section.number.to_s.rjust(3, '0') %></td>
-        <td><%= section.course.course_name %> - <%= section.course.code %></td>
-        <td><%= section.professor.professor_name %></td>
-        <td><%= section.time %></td>
-        <td><%= section.room_number %></td>
-        <td><%= section.days %></td>
-        <td><%= section.semester %></td>
-        <td><%= link_to 'Show', section %></td>
-        <td><%= link_to 'Edit', edit_section_path(section) %></td>
-        <td><%= link_to 'Destroy', section, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <% if @sections.blank? %>
+      <h4 style="color:red;">There are no sections containing the term <%= params[:search] %>.</h4>
+    <% else %>
+      <% @sections.each do |section| %>
+        <tr>
+          <td><%= section.number.to_s.rjust(3, '0') %></td>
+          <td><%= section.course.course_name %> - <%= section.course.code %></td>
+          <td><%= section.professor.professor_name %></td>
+          <td><%= section.time %></td>
+          <td><%= section.room_number %></td>
+          <td><%= section.days %></td>
+          <td><%= section.semester %></td>
+          <td><%= link_to 'Show', section %></td>
+          <td><%= link_to 'Edit', edit_section_path(section) %></td>
+          <td><%= link_to 'Destroy', section, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
     <% end %>
       <tr>
         <td colspan=10 ><%= link_to 'New Section', new_section_path %></td>
       </tr>
   </tbody>
 </table>
+<br>
