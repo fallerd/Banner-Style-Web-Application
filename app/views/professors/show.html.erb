@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h1>
   <%= @professor.professor_name %>
 </h1>
@@ -8,25 +6,29 @@
  - <%= link_to 'Edit', edit_professor_path(@professor) %>
 <br>
 <br>
-<strong>Teaching these courses:</strong>
-<br>
-<table>
-  <tr>
-    <th>Course name</th>
-    <th>Section</th> 
-    <th>Time</th>
-    <th>Days</th>
-    <th>Location</th>
-    <th>Semester</th>
-  </tr>
-  <% @professor.courses.each_with_index do |course, i| %>
-  <tr>
-    <td><%= course.course_name %></td>
-    <td><%= @professor.sections[i].number.to_s.rjust(3, '0')  %></td> 
-    <td><%= @professor.sections[i].time %></td>
-    <td><%= @professor.sections[i].days %></td>
-    <td><%= @professor.sections[i].room_number %></td>
-    <td><%= @professor.sections[i].semester %></td>
-  </tr>
-  <% end %>
-</table>
+<% if @professor.courses.exists? %>
+  <strong>Teaching these courses:</strong>
+  <br>
+  <table>
+    <tr>
+      <th>Course name</th>
+      <th>Section</th> 
+      <th>Time</th>
+      <th>Days</th>
+      <th>Location</th>
+      <th>Semester</th>
+    </tr>
+    <% @professor.courses.each_with_index do |course, i| %>
+    <tr>
+      <td><%= course.course_name %></td>
+      <td><%= @professor.sections[i].number.to_s.rjust(3, '0')  %></td> 
+      <td><%= @professor.sections[i].time %></td>
+      <td><%= @professor.sections[i].days %></td>
+      <td><%= @professor.sections[i].room_number %></td>
+      <td><%= @professor.sections[i].semester %></td>
+    </tr>
+    <% end %>
+  </table>
+<% else %>
+This professor is not teaching any course sections right now.
+<% end %>

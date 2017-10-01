@@ -9,49 +9,55 @@
   </head>
   <% current_uri = request.env['PATH_INFO'] %>
   <body>
-    <p class="notice" id="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <% if user_signed_in? %>
-      <table id="navTable">
-        <tbody>
-          <tr>
-            <% if current_uri == sections_path || current_uri == root_path %>
-            <td class="activeTab">
-              Sections
-              <% else %>
-            <td>
-              <%= link_to 'Sections', sections_path %>
-            <% end %>
-            </td>
-            <% if current_uri == courses_path %>
-            <td class="activeTab">
-              Courses
-              <% else %>
-            <td>
-              <%= link_to 'Courses', courses_path %>
-            <% end %>
-            </td>
-            <% if current_uri == professors_path %>
-            <td class="activeTab">
-              Professors
-              <% else %>
-            <td>
-              <%= link_to 'Professors', professors_path %>
-            <% end %>
-            </td>
-            <td>
-              <%= form_tag(current_uri, :method => "get", id: "search-form") do %>
-              <%= text_field_tag :search, params[:search], placeholder: "Search this page" %>
-              <%= submit_tag "Search", :name => nil %>
+    <div id="bodyDiv">
+      <% if !notice.nil? %>
+        <div class="notice" id="notice"><%= notice %></div>
+      <% end %>
+      <% if !alert.nil? %>
+        <div class="alert" id="alert"><%= alert %></div>
+      <% end %>
+      <% if user_signed_in? %>
+        <table id="navTable">
+          <tbody>
+            <tr>
+              <% if current_uri == sections_path || current_uri == root_path %>
+              <td class="activeTab">
+                Sections
+                <% else %>
+              <td>
+                <%= link_to 'Sections', sections_path %>
               <% end %>
-            </td>
-            <td>
-              <%= link_to 'Log Out', destroy_user_session_path %>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    <% end %>
-    <%= yield %>
+              </td>
+              <% if current_uri == courses_path %>
+              <td class="activeTab">
+                Courses
+                <% else %>
+              <td>
+                <%= link_to 'Courses', courses_path %>
+              <% end %>
+              </td>
+              <% if current_uri == professors_path %>
+              <td class="activeTab">
+                Professors
+                <% else %>
+              <td>
+                <%= link_to 'Professors', professors_path %>
+              <% end %>
+              </td>
+              <td>
+                <%= form_tag(current_uri, :method => "get", id: "search-form") do %>
+                <%= text_field_tag :search, params[:search], placeholder: "Search here..." %>
+                <%= submit_tag "Search", :name => nil %>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to 'Log Out', destroy_user_session_path %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      <% end %>
+      <%= yield %>
+    <div>
   </body>
 </html>

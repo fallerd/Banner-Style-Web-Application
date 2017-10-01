@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h1><%= @course.course_name %> - <%= @course.code %></h1>
 <p>
   <%= @course.description %>
@@ -8,27 +6,30 @@
 <%= link_to 'Back', courses_path %>
 <br>
 <br>
-<strong>Sections Available:</strong>
-<br>
-<table>
-  <tr>
-    <th>Section</th>
-    <th>Professor</th>
-    <th>Time</th>
-    <th>Days</th>
-    <th>Location</th>
-    <th>Semester</th>
-  </tr>
-  <% @course.sections.each_with_index do |section, i| %>
-  <tr>
-    <td><%= section.number.to_s.rjust(3, '0') %></td>
-    <td><%= @course.professors[i].professor_name %></td> 
-    <td><%= section.time %></td>
-    <td><%= section.days %></td>
-    <td><%= section.room_number %></td>
-    <td><%= section.semester %></td>
-  </tr>
-  <% end %>
-</table>
-
+<% if @course.sections.exists? %>
+  <strong>Sections Available:</strong>
+  <br>
+  <table>
+    <tr>
+      <th>Section</th>
+      <th>Professor</th>
+      <th>Time</th>
+      <th>Days</th>
+      <th>Location</th>
+      <th>Semester</th>
+    </tr>
+    <% @course.sections.each_with_index do |section, i| %>
+    <tr>
+      <td><%= section.number.to_s.rjust(3, '0') %></td>
+      <td><%= @course.professors[i].professor_name %></td> 
+      <td><%= section.time %></td>
+      <td><%= section.days %></td>
+      <td><%= section.room_number %></td>
+      <td><%= section.semester %></td>
+    </tr>
+    <% end %>
+  </table>
+<% else %>
+This course does not have any sections being taught right now.
+<% end %>
 
