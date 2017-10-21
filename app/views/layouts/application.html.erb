@@ -20,28 +20,44 @@
         <table id="navTable">
           <tbody>
             <tr>
-              <% if current_uri == sections_path || current_uri == root_path %>
+              <% if current_uri.match sections_path || current_uri == root_path %>
               <td class="activeTab">
-                Sections
+                <%= link_to 'Sections', sections_path %>
                 <% else %>
               <td>
                 <%= link_to 'Sections', sections_path %>
               <% end %>
               </td>
-              <% if current_uri == courses_path %>
+              <% if current_uri.match courses_path %>
               <td class="activeTab">
-                Courses
+                <%= link_to 'Courses', courses_path %>
                 <% else %>
               <td>
                 <%= link_to 'Courses', courses_path %>
               <% end %>
               </td>
-              <% if current_uri == professors_path %>
+              <% if current_uri.match professors_path %>
               <td class="activeTab">
-                Professors
+                <%= link_to 'Professors', professors_path %>
                 <% else %>
               <td>
                 <%= link_to 'Professors', professors_path %>
+              <% end %>
+              </td>
+              <% if current_uri.match students_path %>
+              <td class="activeTab">
+                <%= link_to 'Students', students_path %>
+                <% else %>
+              <td>
+                <%= link_to 'Students', students_path %>
+              <% end %>
+              </td>
+              <% if current_uri.match enrollments_path %>
+              <td class="activeTab">
+                <%= link_to 'Enrollments', enrollments_path %>
+                <% else %>
+              <td>
+                <%= link_to 'Enrollments', enrollments_path %>
               <% end %>
               </td>
               <td>

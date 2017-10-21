@@ -37,6 +37,13 @@ tr:nth-child(even) {
 
 .activeTab {
 	background-color: white;
+  border-bottom-color: white !important;
+}
+
+.activeTab > a {
+  color:black !important;
+  text-decoration: none !important;
+  background-color: white !important;
 }
 
 #navTable tr {
@@ -87,4 +94,17 @@ tr:nth-child(even) {
 #error_explanation {
     background-color: #FFC7C7;
     border-color: #c00;
+}
+
+
+#students_table th {
+  background-color: #ccffcc;
+}
+
+#students_table tr:nth-child(even) {
+    background-color: #e6ffe6;
+}
+
+.subtable {
+  padding-left:50px;
 }

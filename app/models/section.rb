@@ -1,6 +1,8 @@
 class Section < ApplicationRecord
   belongs_to :course
   belongs_to :professor
+  has_many :enrollments
+  has_many :students, through: :enrollments
   
   validates :number, uniqueness: { scope: :course, message: "Sections for courses must be unique" }
   validates :number, format: { with: /\A[0-9]{1,2}\Z/, message: "Must be between 1 and 99"}
