@@ -1,0 +1,44 @@
+<p>
+  <strong>Name:</strong>
+  <%= @student.name %> - <%= link_to 'Edit', edit_student_path(@student) %>
+</p>
+
+<p>
+  <strong>Student number:</strong>
+  <%= @student.student_number %>
+</p>
+
+<p>
+  <strong>Email address:</strong>
+  <%= @student.email_address %>
+</p>
+
+<% if @student.sections.exists? %>
+  <strong>Enrolled in these courses:</strong>
+  <br>
+  <br>
+  <table>
+    <tr>
+      <th>Course name</th>
+      <th>Section</th> 
+      <th>Time</th>
+      <th>Days</th>
+      <th>Location</th>
+      <th>Semester</th>
+    </tr>
+    <% @student.sections.each do |section| %>
+    <tr>
+      <td><%= section.course.course_name %></td>
+      <td><%= section.number.to_s.rjust(3, '0')  %></td> 
+      <td><%= section.time %></td>
+      <td><%= section.days %></td>
+      <td><%= section.room_number %></td>
+      <td><%= section.semester %></td>
+    </tr>
+    <% end %>
+  </table>
+<% else %>
+This student is not enrolled in any course sections right now.
+<% end %>
+<br> 
+<%= link_to 'Back', students_path %>
