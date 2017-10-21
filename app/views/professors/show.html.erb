@@ -27,6 +27,23 @@
       <td><%= @professor.sections[i].room_number %></td>
       <td><%= @professor.sections[i].semester %></td>
     </tr>
+    <% if @professor.sections[i].students.exists? %>
+    <tr>
+      <td id='students_table' colspan='8' class='subtable'>
+        <table>
+          <tr>
+            <th>Students in this section:</th>
+          </tr>
+          <% @professor.sections[i].students.each do |student| %>
+          <tr>
+            <td><%= student.name %><% student.student_number %></td>
+          </tr>
+          <% end %>
+        </table>
+      </td>
+    </tr>
+    <% end %>
+
     <% end %>
   </table>
 <% else %>

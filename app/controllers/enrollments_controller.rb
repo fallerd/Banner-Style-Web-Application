@@ -5,27 +5,31 @@ class EnrollmentsController < ApplicationController
   # GET /enrollments.json
   def index
     @enrollments = Enrollment.all
+    @courses = Course.all
   end
 
   # GET /enrollments/1
   # GET /enrollments/1.json
   def show
+    @courses = Course.all
   end
 
   # GET /enrollments/new
   def new
     @enrollment = Enrollment.new
+    @courses = Course.all
   end
 
   # GET /enrollments/1/edit
   def edit
+    @courses = Course.all
   end
 
   # POST /enrollments
   # POST /enrollments.json
   def create
     @enrollment = Enrollment.new(enrollment_params)
-
+    @courses = Course.all
     respond_to do |format|
       if @enrollment.save
         format.html { redirect_to @enrollment, notice: 'Enrollment was successfully created.' }
