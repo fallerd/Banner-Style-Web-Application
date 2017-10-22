@@ -26,7 +26,7 @@
     <%= f.select :section_id, option_groups_from_collection_for_select(@courses, :sections, :course_name, :id, :number, 0), include_blank: true %>
   </div>
 
-  <div class="field" onload="leadZeroes()">
+  <div class="field">
     <%= f.label :student_id %>
     <%= f.collection_select :student_id, Student.order(:name), :id, :name, include_blank: true %>
   </div>
