@@ -20,6 +20,7 @@
   <table>
     <tr>
       <th>Course name</th>
+      <th>Professor</th>
       <th>Section</th> 
       <th>Time</th>
       <th>Days</th>
@@ -29,6 +30,7 @@
     <% @student.sections.each do |section| %>
     <tr>
       <td><%= section.course.course_name %></td>
+      <td><%= section.professor.professor_name %></td>
       <td><%= section.number.to_s.rjust(3, '0')  %></td> 
       <td><%= section.time %></td>
       <td><%= section.days %></td>
